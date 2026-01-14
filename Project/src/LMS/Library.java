@@ -135,58 +135,58 @@ public class Library {
     /*----------------------------------------------*/
       
     /*-----------Finding People in Library--------------*/
-    public Borrower findBorrower()
-    {
+    public Borrower findBorrower() {
         System.out.println("\nEnter Borrower's ID: ");
-        
+
         int id = 0;
-        
         Scanner scanner = new Scanner(System.in);
-        
-        try{
+
+        try {
             id = scanner.nextInt();
-        }
-        catch (java.util.InputMismatchException e)
-        {
+        } catch (InputMismatchException e) {
             System.out.println("\nInvalid Input");
         }
 
-        for (int i = 0; i < persons.size(); i++)
-        {
-            if (persons.get(i).getID() == id && persons.get(i).getClass().getSimpleName().equals("Borrower"))
-                return (Borrower)(persons.get(i));
+        return findBorrowerById(id);
+    }
+
+
+    public Borrower findBorrowerById(int id){
+        for (int i = 0; i < persons.size(); i++) {
+            if (persons.get(i).getID() == id &&
+                    persons.get(i) instanceof Borrower) {
+                return (Borrower) persons.get(i);
+            }
         }
-        
-        System.out.println("\nSorry this ID didn't match any Borrower's ID.");
         return null;
     }
-    
-    public Clerk findClerk()
-    {
+
+    public Clerk findClerk() {
         System.out.println("\nEnter Clerk's ID: ");
-        
+
         int id = 0;
-        
         Scanner scanner = new Scanner(System.in);
-        
-        try{
+
+        try {
             id = scanner.nextInt();
-        }
-        catch (java.util.InputMismatchException e)
-        {
+        } catch (java.util.InputMismatchException e) {
             System.out.println("\nInvalid Input");
         }
 
-        for (int i = 0; i < persons.size(); i++)
-        {
-            if (persons.get(i).getID() == id && persons.get(i).getClass().getSimpleName().equals("Clerk"))
-                return (Clerk)(persons.get(i));
+        return findClerkById(id);
+    }
+
+
+    public Clerk findClerkById(int id) {
+        for (int i = 0; i < persons.size(); i++) {
+            if (persons.get(i).getID() == id &&
+                    persons.get(i) instanceof Clerk) {
+                return (Clerk) persons.get(i);
+            }
         }
-        
-        System.out.println("\nSorry this ID didn't match any Clerk's ID.");
         return null;
     }
-    
+
     /*------- FUNCS. on Books In Library--------------*/
     public void addBookinLibrary(Book b)
     {
